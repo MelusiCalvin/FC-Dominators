@@ -1,0 +1,23 @@
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'fc-orange': '#FF5722',
+        'fc-dark': '#1a1a1a',
+        'fc-darker': '#0f0f0f',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+}
+export default config
