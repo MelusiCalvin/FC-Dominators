@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Player, Coach, ClubInfo, Program, TestimonialOrEvent
+from .models import Player, Coach, ClubInfo, Program, ScheduleItem, TestimonialOrEvent
 
 
 @admin.register(Player)
@@ -19,7 +19,7 @@ class CoachAdmin(admin.ModelAdmin):
 
 @admin.register(ClubInfo)
 class ClubInfoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'established_year', 'email')
+    list_display = ('name', 'established_year', 'executive_director_name', 'calls_number', 'email')
     readonly_fields = ('created_at', 'updated_at')
 
 
@@ -28,6 +28,14 @@ class ProgramAdmin(admin.ModelAdmin):
     list_display = ('name', 'age_group', 'price')
     list_filter = ('created_at',)
     search_fields = ('name', 'age_group')
+
+
+@admin.register(ScheduleItem)
+class ScheduleItemAdmin(admin.ModelAdmin):
+    list_display = ('item_type', 'opponent', 'match_date', 'match_time', 'competition', 'is_home')
+    list_filter = ('item_type', 'is_home', 'match_date')
+    search_fields = ('opponent', 'competition', 'venue')
+    ordering = ('-match_date', '-match_time')
 
 
 @admin.register(TestimonialOrEvent)

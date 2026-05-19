@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Player, Coach, ClubInfo, Program, TestimonialOrEvent
+from .models import Player, Coach, ClubInfo, Program, ScheduleItem, TestimonialOrEvent
 
 
 class PlayerSerializer(serializers.ModelSerializer):
@@ -26,7 +26,10 @@ class ClubInfoSerializer(serializers.ModelSerializer):
         model = ClubInfo
         fields = [
             'id', 'name', 'established_year', 'description', 'mission',
-            'address', 'phone', 'email', 'website', 'active_members',
+            'executive_director_name', 'executive_director_title',
+            'goals_objectives', 'team_achievements', 'sponsorship_needs',
+            'joining_cost', 'address', 'phone', 'whatsapp_number',
+            'calls_number', 'email', 'website', 'active_members',
             'expert_coaches', 'programs', 'years_of_excellence',
             'logo', 'banner_image', 'created_at', 'updated_at'
         ]
@@ -38,6 +41,16 @@ class ProgramSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'description', 'age_group', 'schedule',
             'price', 'created_at', 'updated_at'
+        ]
+
+
+class ScheduleItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScheduleItem
+        fields = [
+            'id', 'item_type', 'opponent', 'competition', 'venue',
+            'match_date', 'match_time', 'is_home', 'goals_for',
+            'goals_against', 'notes', 'created_at', 'updated_at'
         ]
 
 

@@ -3,18 +3,17 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { testimonialsAPI } from '@/lib/api';
-import type { Testimonial } from '@/types';
 
 export default function TestimonialsAdmin() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     role: '',
     quote: '',
   });
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchTestimonials();
@@ -53,7 +52,7 @@ export default function TestimonialsAdmin() {
     }
   };
 
-  const handleDeleteTestimonial = async (id: number) => {
+  const handleDeleteTestimonial = async (id) => {
     if (confirm('Are you sure you want to delete this testimonial?')) {
       try {
         await testimonialsAPI.delete(id);
@@ -64,7 +63,7 @@ export default function TestimonialsAdmin() {
     }
   };
 
-  const handleEdit = (testimonial: Testimonial) => {
+  const handleEdit = (testimonial) => {
     setEditingId(testimonial.id);
     setFormData({
       name: testimonial.name,

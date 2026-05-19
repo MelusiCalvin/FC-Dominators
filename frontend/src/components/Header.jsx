@@ -8,15 +8,19 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path) => !path.includes('#') && pathname === path;
 
   const navItems = [
     { name: 'HOME', href: '/' },
-    { name: 'ABOUT', href: '/#about' },
-    { name: 'PROGRAMS', href: '/#programs' },
-    { name: 'COACHES', href: '/#coaches' },
+    { name: 'ABOUT TEAM', href: '/#about-team' },
+    { name: 'ACHIEVEMENTS', href: '/#achievements' },
+    { name: 'GOALS', href: '/#goals' },
+    { name: 'SPONSORSHIP', href: '/#sponsorship' },
+    { name: 'JOINING COST', href: '/#joining-cost' },
     { name: 'SCHEDULE', href: '/#schedule' },
-    { name: 'PRICING', href: '/#pricing' },
+    { name: 'COACH', href: '/#coach-contact' },
+    { name: 'SQUAD', href: '/#players' },
+    { name: 'GALLERY', href: '/gallery' },
     { name: 'CONTACT', href: '/#contact' },
     { name: 'ADMIN', href: '/admin' },
   ];
@@ -33,7 +37,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -50,9 +54,9 @@ export default function Header() {
         </nav>
 
         {/* CTA Button */}
-        <button className="hidden md:block btn-primary text-sm">
+        <a href="/#joining-cost" className="hidden md:block btn-primary text-sm">
           JOIN NOW
-        </button>
+        </a>
 
         {/* Mobile Menu Button */}
         <button

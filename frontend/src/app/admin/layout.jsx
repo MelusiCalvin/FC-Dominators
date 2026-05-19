@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -49,8 +49,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Link href="/admin/testimonials" className="block px-4 py-2 text-gray-300 hover:text-fc-orange hover:bg-fc-darker rounded transition">
                 Testimonials
               </Link>
+              <Link href="/admin/schedule" className="block px-4 py-2 text-gray-300 hover:text-fc-orange hover:bg-fc-darker rounded transition">
+                Schedule
+              </Link>
               <Link href="/" className="block px-4 py-2 text-gray-300 hover:text-fc-orange hover:bg-fc-darker rounded transition">
-                ← Back to Site
+                Back to Site
               </Link>
             </nav>
           </div>
@@ -81,3 +84,4 @@ function NotAuthenticated() {
     </div>
   );
 }
+

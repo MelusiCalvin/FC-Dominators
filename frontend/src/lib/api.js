@@ -24,34 +24,34 @@ apiClient.interceptors.request.use((config) => {
 export const playersAPI = {
   getAll: () => apiClient.get('/players/'),
   getFeatured: () => apiClient.get('/players/featured/'),
-  getById: (id: number) => apiClient.get(`/players/${id}/`),
-  create: (data: any) => apiClient.post('/players/', data, {
+  getById: (id) => apiClient.get(`/players/${id}/`),
+  create: (data) => apiClient.post('/players/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  update: (id: number, data: any) => apiClient.put(`/players/${id}/`, data, {
+  update: (id, data) => apiClient.put(`/players/${id}/`, data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  delete: (id: number) => apiClient.delete(`/players/${id}/`),
+  delete: (id) => apiClient.delete(`/players/${id}/`),
 };
 
 // Coaches API
 export const coachesAPI = {
   getAll: () => apiClient.get('/coaches/'),
   getFeatured: () => apiClient.get('/coaches/featured/'),
-  getById: (id: number) => apiClient.get(`/coaches/${id}/`),
-  create: (data: any) => apiClient.post('/coaches/', data, {
+  getById: (id) => apiClient.get(`/coaches/${id}/`),
+  create: (data) => apiClient.post('/coaches/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  update: (id: number, data: any) => apiClient.put(`/coaches/${id}/`, data, {
+  update: (id, data) => apiClient.put(`/coaches/${id}/`, data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  delete: (id: number) => apiClient.delete(`/coaches/${id}/`),
+  delete: (id) => apiClient.delete(`/coaches/${id}/`),
 };
 
 // Club Info API
 export const clubInfoAPI = {
   get: () => apiClient.get('/club-info/'),
-  update: (id: number, data: any) => apiClient.put(`/club-info/${id}/`, data, {
+  update: (id, data) => apiClient.put(`/club-info/${id}/`, data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
 };
@@ -59,21 +59,32 @@ export const clubInfoAPI = {
 // Programs API
 export const programsAPI = {
   getAll: () => apiClient.get('/programs/'),
-  getById: (id: number) => apiClient.get(`/programs/${id}/`),
-  create: (data: any) => apiClient.post('/programs/', data),
-  update: (id: number, data: any) => apiClient.put(`/programs/${id}/`, data),
-  delete: (id: number) => apiClient.delete(`/programs/${id}/`),
+  getById: (id) => apiClient.get(`/programs/${id}/`),
+  create: (data) => apiClient.post('/programs/', data),
+  update: (id, data) => apiClient.put(`/programs/${id}/`, data),
+  delete: (id) => apiClient.delete(`/programs/${id}/`),
+};
+
+// Schedule API
+export const scheduleAPI = {
+  getAll: () => apiClient.get('/schedule-items/'),
+  getFixtures: () => apiClient.get('/schedule-items/fixtures/'),
+  getResults: () => apiClient.get('/schedule-items/results/'),
+  getById: (id) => apiClient.get(`/schedule-items/${id}/`),
+  create: (data) => apiClient.post('/schedule-items/', data),
+  update: (id, data) => apiClient.put(`/schedule-items/${id}/`, data),
+  delete: (id) => apiClient.delete(`/schedule-items/${id}/`),
 };
 
 // Testimonials API
 export const testimonialsAPI = {
   getAll: () => apiClient.get('/testimonials/'),
-  getById: (id: number) => apiClient.get(`/testimonials/${id}/`),
-  create: (data: any) => apiClient.post('/testimonials/', data, {
+  getById: (id) => apiClient.get(`/testimonials/${id}/`),
+  create: (data) => apiClient.post('/testimonials/', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  update: (id: number, data: any) => apiClient.put(`/testimonials/${id}/`, data, {
+  update: (id, data) => apiClient.put(`/testimonials/${id}/`, data, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  delete: (id: number) => apiClient.delete(`/testimonials/${id}/`),
+  delete: (id) => apiClient.delete(`/testimonials/${id}/`),
 };

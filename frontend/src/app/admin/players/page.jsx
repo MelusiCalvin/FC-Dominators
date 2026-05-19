@@ -3,12 +3,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { playersAPI } from '@/lib/api';
-import type { Player } from '@/types';
 
 export default function PlayersAdmin() {
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     position: 'forward',
@@ -19,7 +18,7 @@ export default function PlayersAdmin() {
     weight: '',
     achievements: '',
   });
-  const [photo, setPhoto] = useState<File | null>(null);
+  const [photo, setPhoto] = useState(null);
 
   const positions = ['goalkeeper', 'defender', 'midfielder', 'forward'];
 
@@ -60,7 +59,7 @@ export default function PlayersAdmin() {
     }
   };
 
-  const handleDeletePlayer = async (id: number) => {
+  const handleDeletePlayer = async (id) => {
     if (confirm('Are you sure you want to delete this player?')) {
       try {
         await playersAPI.delete(id);
@@ -71,7 +70,7 @@ export default function PlayersAdmin() {
     }
   };
 
-  const handleEdit = (player: Player) => {
+  const handleEdit = (player) => {
     setEditingId(player.id);
     setFormData({
       name: player.name,
@@ -117,7 +116,7 @@ export default function PlayersAdmin() {
           />
           <select
             value={formData.position}
-            onChange={(e) => setFormData({ ...formData, position: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, position: e.target.value })}
             className="bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
           >
             {positions.map((pos) => (

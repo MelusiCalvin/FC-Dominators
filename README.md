@@ -27,7 +27,6 @@ FC Dominators/
     │   ├── app/      # Pages & layouts
     │   ├── components/   # Reusable components
     │   ├── lib/      # API client & utilities
-    │   └── types/    # TypeScript type definitions
     ├── package.json
     └── next.config.js
 ```
@@ -163,7 +162,7 @@ The site uses:
 **Frontend**:
 - Next.js 14
 - React 18
-- TypeScript
+- JavaScript
 - Tailwind CSS
 - Axios
 

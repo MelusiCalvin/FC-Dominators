@@ -3,12 +3,11 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { coachesAPI } from '@/lib/api';
-import type { Coach } from '@/types';
 
 export default function CoachesAdmin() {
-  const [coaches, setCoaches] = useState<Coach[]>([]);
+  const [coaches, setCoaches] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     role: 'head_coach',
@@ -16,7 +15,7 @@ export default function CoachesAdmin() {
     experience_years: 0,
     certifications: '',
   });
-  const [photo, setPhoto] = useState<File | null>(null);
+  const [photo, setPhoto] = useState(null);
 
   const roles = ['head_coach', 'assistant_coach', 'fitness_coach', 'youth_coach'];
 
@@ -57,7 +56,7 @@ export default function CoachesAdmin() {
     }
   };
 
-  const handleDeleteCoach = async (id: number) => {
+  const handleDeleteCoach = async (id) => {
     if (confirm('Are you sure you want to delete this coach?')) {
       try {
         await coachesAPI.delete(id);
@@ -68,7 +67,7 @@ export default function CoachesAdmin() {
     }
   };
 
-  const handleEdit = (coach: Coach) => {
+  const handleEdit = (coach) => {
     setEditingId(coach.id);
     setFormData({
       name: coach.name,
@@ -108,7 +107,7 @@ export default function CoachesAdmin() {
           />
           <select
             value={formData.role}
-            onChange={(e) => setFormData({ ...formData, role: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             className="bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
           >
             {roles.map((role) => (

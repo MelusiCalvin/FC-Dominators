@@ -1,33 +1,38 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export default function AdminHome() {
   const [stats, setStats] = useState({
     players: 0,
     coaches: 0,
     testimonials: 0,
+    schedule: 0,
   });
 
   useEffect(() => {
-    // Fetch stats from API
     const fetchStats = async () => {
       try {
-        const [playersRes, coachesRes, testimonialsRes] = await Promise.all([
-          fetch('http://localhost:8000/api/players/'),
-          fetch('http://localhost:8000/api/coaches/'),
-          fetch('http://localhost:8000/api/testimonials/'),
+        const [playersRes, coachesRes, testimonialsRes, scheduleRes] = await Promise.all([
+          fetch(`${API_BASE_URL}/players/`),
+          fetch(`${API_BASE_URL}/coaches/`),
+          fetch(`${API_BASE_URL}/testimonials/`),
+          fetch(`${API_BASE_URL}/schedule-items/`),
         ]);
 
         const playersData = await playersRes.json();
         const coachesData = await coachesRes.json();
         const testimonialsData = await testimonialsRes.json();
+        const scheduleData = await scheduleRes.json();
 
         setStats({
           players: playersData.results?.length || playersData.length || 0,
           coaches: coachesData.results?.length || coachesData.length || 0,
           testimonials: testimonialsData.results?.length || testimonialsData.length || 0,
+          schedule: scheduleData.results?.length || scheduleData.length || 0,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -41,7 +46,7 @@ export default function AdminHome() {
     <div className="p-8">
       <h1 className="text-3xl font-bold text-white mb-8">Admin Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
         <div className="bg-fc-dark rounded-lg p-6 border border-fc-orange/20">
           <p className="text-gray-400 text-sm mb-2">Total Players</p>
           <p className="text-4xl font-bold text-fc-orange">{stats.players}</p>
@@ -55,9 +60,13 @@ export default function AdminHome() {
           <p className="text-4xl font-bold text-fc-orange">{stats.testimonials}</p>
         </div>
         <div className="bg-fc-dark rounded-lg p-6 border border-fc-orange/20">
+          <p className="text-gray-400 text-sm mb-2">Schedule Items</p>
+          <p className="text-4xl font-bold text-fc-orange">{stats.schedule}</p>
+        </div>
+        <div className="bg-fc-dark rounded-lg p-6 border border-fc-orange/20">
           <p className="text-gray-400 text-sm mb-2">Quick Links</p>
           <Link href="/" className="text-fc-orange hover:text-orange-400">
-            View Site →
+            View Site {'>'}
           </Link>
         </div>
       </div>
@@ -66,25 +75,31 @@ export default function AdminHome() {
         <Link href="/admin/players" className="bg-fc-dark rounded-lg p-8 border border-fc-orange/20 hover:border-fc-orange transition cursor-pointer">
           <h3 className="text-xl font-bold text-white mb-2">Manage Players</h3>
           <p className="text-gray-400 mb-4">Add, edit, or remove players from the roster</p>
-          <span className="text-fc-orange">Manage →</span>
+          <span className="text-fc-orange">Manage {'>'}</span>
         </Link>
 
         <Link href="/admin/coaches" className="bg-fc-dark rounded-lg p-8 border border-fc-orange/20 hover:border-fc-orange transition cursor-pointer">
           <h3 className="text-xl font-bold text-white mb-2">Manage Coaches</h3>
           <p className="text-gray-400 mb-4">Add, edit, or remove coaches from the team</p>
-          <span className="text-fc-orange">Manage →</span>
+          <span className="text-fc-orange">Manage {'>'}</span>
         </Link>
 
         <Link href="/admin/club-info" className="bg-fc-dark rounded-lg p-8 border border-fc-orange/20 hover:border-fc-orange transition cursor-pointer">
           <h3 className="text-xl font-bold text-white mb-2">Club Information</h3>
           <p className="text-gray-400 mb-4">Update club details, mission, and statistics</p>
-          <span className="text-fc-orange">Manage →</span>
+          <span className="text-fc-orange">Manage {'>'}</span>
         </Link>
 
         <Link href="/admin/testimonials" className="bg-fc-dark rounded-lg p-8 border border-fc-orange/20 hover:border-fc-orange transition cursor-pointer">
           <h3 className="text-xl font-bold text-white mb-2">Testimonials</h3>
           <p className="text-gray-400 mb-4">Add, edit, or remove member testimonials</p>
-          <span className="text-fc-orange">Manage →</span>
+          <span className="text-fc-orange">Manage {'>'}</span>
+        </Link>
+
+        <Link href="/admin/schedule" className="bg-fc-dark rounded-lg p-8 border border-fc-orange/20 hover:border-fc-orange transition cursor-pointer md:col-span-2">
+          <h3 className="text-xl font-bold text-white mb-2">Fixtures and Results</h3>
+          <p className="text-gray-400 mb-4">Post upcoming fixtures and publish completed match results</p>
+          <span className="text-fc-orange">Manage {'>'}</span>
         </Link>
       </div>
     </div>

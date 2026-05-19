@@ -1,15 +1,22 @@
 from django.db import models
-from django.core.validators import URLValidator
 
 class ClubInfo(models.Model):
     """Store club information"""
     name = models.CharField(max_length=200, default="FC Dominators")
     established_year = models.IntegerField(default=2010)
-    description = models.TextField()
-    mission = models.TextField()
-    address = models.CharField(max_length=300)
-    phone = models.CharField(max_length=20)
-    email = models.EmailField()
+    description = models.TextField(default="FC Dominators is a competitive football team focused on discipline, growth, and excellence.")
+    mission = models.TextField(default="Develop elite football talent while building character, teamwork, and leadership in every player.")
+    executive_director_name = models.CharField(max_length=200, default="Yongama Ngondo")
+    executive_director_title = models.CharField(max_length=200, default="Head Coach & Team Executive Director")
+    goals_objectives = models.TextField(default="Compete at a high level, improve player development pathways, and build a sustainable winning culture.")
+    team_achievements = models.TextField(default="Regional tournament appearances, player promotions, and consistent top-league performances.")
+    sponsorship_needs = models.TextField(default="Training equipment, transport support, match-day kits, and youth development funding.")
+    joining_cost = models.TextField(default="Contact the team for current registration and monthly contribution fees.")
+    address = models.CharField(max_length=300, default="Contact the team for the latest training venue details.")
+    phone = models.CharField(max_length=20, default="+27694703626")
+    whatsapp_number = models.CharField(max_length=20, default="+27694703626")
+    calls_number = models.CharField(max_length=20, default="+27694703626")
+    email = models.EmailField(default="info@fcdominators.co.za")
     website = models.URLField(blank=True)
     active_members = models.IntegerField(default=500)
     expert_coaches = models.IntegerField(default=15)
@@ -95,6 +102,33 @@ class Program(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ScheduleItem(models.Model):
+    """Store fixtures and results for the club schedule."""
+    TYPE_CHOICES = [
+        ('fixture', 'Fixture'),
+        ('result', 'Result'),
+    ]
+
+    item_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    opponent = models.CharField(max_length=200)
+    competition = models.CharField(max_length=200, blank=True)
+    venue = models.CharField(max_length=200, blank=True)
+    match_date = models.DateField()
+    match_time = models.TimeField(null=True, blank=True)
+    is_home = models.BooleanField(default=True)
+    goals_for = models.IntegerField(null=True, blank=True)
+    goals_against = models.IntegerField(null=True, blank=True)
+    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-match_date', '-match_time', '-created_at']
+
+    def __str__(self):
+        return f"{self.get_item_type_display()} vs {self.opponent} ({self.match_date})"
 
 
 class TestimonialOrEvent(models.Model):

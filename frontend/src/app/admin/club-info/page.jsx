@@ -2,18 +2,25 @@
 
 import { useEffect, useState } from 'react';
 import { clubInfoAPI } from '@/lib/api';
-import type { ClubInfo } from '@/types';
 
 export default function ClubInfoAdmin() {
-  const [clubInfo, setClubInfo] = useState<ClubInfo | null>(null);
+  const [clubInfo, setClubInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     established_year: 2010,
     description: '',
     mission: '',
+    executive_director_name: 'Yongama Ngondo',
+    executive_director_title: 'Head Coach & Team Executive Director',
+    goals_objectives: '',
+    team_achievements: '',
+    sponsorship_needs: '',
+    joining_cost: '',
     address: '',
     phone: '',
+    whatsapp_number: '+27694703626',
+    calls_number: '+27694703626',
     email: '',
     website: '',
     active_members: 0,
@@ -109,6 +116,26 @@ export default function ClubInfoAdmin() {
           </div>
 
           <div>
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Executive Director Name</label>
+            <input
+              type="text"
+              value={formData.executive_director_name}
+              onChange={(e) => setFormData({ ...formData, executive_director_name: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Executive Director Title</label>
+            <input
+              type="text"
+              value={formData.executive_director_title}
+              onChange={(e) => setFormData({ ...formData, executive_director_title: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+            />
+          </div>
+
+          <div>
             <label className="block text-gray-400 text-sm font-semibold mb-2">Website</label>
             <input
               type="url"
@@ -124,6 +151,26 @@ export default function ClubInfoAdmin() {
               type="text"
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-400 text-sm font-semibold mb-2">WhatsApp Number</label>
+            <input
+              type="tel"
+              value={formData.whatsapp_number}
+              onChange={(e) => setFormData({ ...formData, whatsapp_number: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Calls Number</label>
+            <input
+              type="tel"
+              value={formData.calls_number}
+              onChange={(e) => setFormData({ ...formData, calls_number: e.target.value })}
               className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
             />
           </div>
@@ -185,6 +232,46 @@ export default function ClubInfoAdmin() {
               onChange={(e) => setFormData({ ...formData, mission: e.target.value })}
               className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
               rows={4}
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Goals/Objectives</label>
+            <textarea
+              value={formData.goals_objectives}
+              onChange={(e) => setFormData({ ...formData, goals_objectives: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+              rows={4}
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Team Achievements</label>
+            <textarea
+              value={formData.team_achievements}
+              onChange={(e) => setFormData({ ...formData, team_achievements: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+              rows={4}
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Sponsorship Needs</label>
+            <textarea
+              value={formData.sponsorship_needs}
+              onChange={(e) => setFormData({ ...formData, sponsorship_needs: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+              rows={4}
+            />
+          </div>
+
+          <div className="col-span-2">
+            <label className="block text-gray-400 text-sm font-semibold mb-2">Cost of Joining</label>
+            <textarea
+              value={formData.joining_cost}
+              onChange={(e) => setFormData({ ...formData, joining_cost: e.target.value })}
+              className="w-full bg-fc-darker text-white px-4 py-2 rounded border border-fc-orange/20 focus:border-fc-orange outline-none"
+              rows={3}
             />
           </div>
         </div>
