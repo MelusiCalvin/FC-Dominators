@@ -16,13 +16,12 @@ export default function Header() {
     { name: 'ACHIEVEMENTS', href: '/#achievements' },
     { name: 'GOALS', href: '/#goals' },
     { name: 'SPONSORSHIP', href: '/#sponsorship' },
-    { name: 'JOINING COST', href: '/#joining-cost' },
     { name: 'SCHEDULE', href: '/#schedule' },
     { name: 'COACH', href: '/#coach-contact' },
     { name: 'SQUAD', href: '/#players' },
     { name: 'GALLERY', href: '/gallery' },
     { name: 'CONTACT', href: '/#contact' },
-    { name: 'ADMIN', href: '/admin' },
+    { name: 'ADMIN', href: 'https://fc-dominators.onrender.com/admin' },
   ];
 
   return (

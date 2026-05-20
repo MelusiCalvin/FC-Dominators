@@ -55,7 +55,7 @@ export default function Footer({ clubInfo }) {
         <div className="border-t border-fc-orange/20 pt-8">
           <p className="text-center text-gray-400 text-sm">
             &copy; 2026 FC Dominators. All rights reserved.
-            <Link href="/admin" className="text-fc-orange hover:text-orange-400 ml-2">Admin Panel</Link>
+            <Link href="https://fc-dominators.onrender.com/admin" className="text-fc-orange hover:text-orange-400 ml-2">Admin Panel</Link>
           </p>
         </div>
       </div>
