@@ -93,20 +93,6 @@ Or use VS Code Live Server.
 
 ---
 
-## 📸 Screenshots
-
-Replace these placeholders with screenshots of your website.
-
-| Home | Teams |
-|------|-------|
-| ![](https://via.placeholder.com/500x300) | ![](https://via.placeholder.com/500x300) |
-
-| Gallery | Contact |
-|----------|---------|
-| ![](https://via.placeholder.com/500x300) | ![](https://via.placeholder.com/500x300) |
-
----
-
 ## 🎯 Future Improvements
 
 - Online player registration
@@ -155,7 +141,7 @@ git push origin feature/new-feature
 
 📧 info@fcdominators.co.za
 
-🌐 https://fcdominators.co.za *(replace with your domain if available)*
+🌐 https://fc-dominators-1.onrender.com
 
 ---
 
